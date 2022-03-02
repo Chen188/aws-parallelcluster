@@ -941,6 +941,7 @@ class ClusterCdkStack(Stack):
                     ),
                     **get_directory_service_dna_json_for_head_node(self.config),
                 },
+                "override_subnets": self._get_override_subnets__multi_az()
             },
             indent=4,
         )
@@ -1122,6 +1123,21 @@ class ClusterCdkStack(Stack):
             head_node_instance.add_depends_on(self.scheduler_plugin_stack)
 
         return head_node_instance
+
+
+    def _get_override_subnets__multi_az(self):
+        """
+        transform SubnetIds to override_subnets object.
+
+        {"quene_name":{"compute_resource_name": ["subnet-id1", "subnet-id2"]}}
+        """
+        override_subnets = {}
+        for queue in self.config.scheduling.queues:
+            override_subnets[queue.name] = {}
+            for cr in queue.compute_resources:
+                override_subnets[queue.name][cr.name] = queue.networking.subnet_ids
+
+        return override_subnets
 
     def _get_launch_templates_config(self):
         if not self.compute_fleet_resources:

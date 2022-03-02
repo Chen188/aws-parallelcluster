@@ -229,6 +229,8 @@ def run(sys_args, model=None):
 
 
 def main():
+    print("***MultiAz function is in beta version, do tests before using in prod, use it on your own risk.***\n")
+
     pcluster_logging.config_logger()
     try:
         ret = run(sys.argv[1:])

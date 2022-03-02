@@ -512,6 +512,7 @@ class HeadNodeIamResources(NodeIamResourcesBase):
                     "ec2:DescribeInstances",
                     "ec2:DescribeInstanceStatus",
                     "ec2:DescribeVolumes",
+                    "ec2:DescribeLaunchTemplateVersions"
                 ],
                 effect=iam.Effect.ALLOW,
                 resources=["*"],
