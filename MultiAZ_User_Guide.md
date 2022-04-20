@@ -2,7 +2,9 @@
 
 To fully utilize EC2 instances in a whole Region, you can follow this guide to launch instance across multiple AZs within a single Slurm cluster, both on-demand and spot instances.
 
-*Currently, this feature is for Slurm scheduler only.*
+*Note 1: Currently, this feature is for Slurm scheduler only.*
+
+*Note 2: Keep in mind cross-AZ traffic cost may incurs if you use it improperly. For example, head node and compute nodes in different AZ and need huge data exchange, access shared storage belongs to another AZ, communications amonge compute nodes across AZ, etc*
 
 ## 0. Environment
 
@@ -28,7 +30,7 @@ You’ve to update the cli package(if you happen to have an old version installe
 
 ### Create config file
 
-You can refer the configuration below to active Multi-AZ feature, note that you can set multiples Subnet IDs under `SlurmQueues/Networking/SubnetIds` , these subnets should belong to different AZs (that’s why we need Multi-AZ).
+You can refer the configuration below to activate Multi-AZ feature, note that you can set multiples Subnet IDs under `SlurmQueues/Networking/SubnetIds` , these subnets should belong to different AZs (that’s why we need Multi-AZ).
 
 ```yaml
 Region: ap-southeast-1
