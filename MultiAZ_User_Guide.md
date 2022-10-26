@@ -17,7 +17,7 @@ Git repos:
 
 Package URLs:
 
-- ParallelCluster CLI: `https://github.com/Chen188/aws-parallelcluster-node/archive/refs/heads/v3.1.1_maz.zip`
+- ParallelCluster CLI: `https://github.com/Chen188/aws-parallelcluster/archive/refs/heads/v3.1.1_maz.zip`
 - Head node post-install script: `https://s3.ap-northeast-1.amazonaws.com/share.bkt.binc/parallelcluster/3.1.1/custom-actions/on-node-configured-script.sh`
 
 ## 1. User guide
@@ -26,7 +26,11 @@ Package URLs:
 
 You’ve to update the cli package(if you happen to have an old version installed), we advise to use a virtual python env, such as `venv` or `conda`. Run the command to upgrade ParallelCluster CLI:
 
-`pip install --force-reinstall --upgrade https://github.com/Chen188/aws-parallelcluster/archive/refs/heads/v3.1.1_maz.zip`
+```bash
+wget -q https://github.com/Chen188/aws-parallelcluster/archive/refs/heads/v3.1.1_maz.zip
+unzip -q v3.1.1_maz.zip && cd aws-parallelcluster-3.1.1_maz
+pip install --force-reinstall --upgrade ./cli
+```
 
 ### Create config file
 
